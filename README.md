@@ -1,2 +1,1 @@
-# angularjs-crud
-crud simples com AngularJS
+Just a Simple AngulatJs CRUD

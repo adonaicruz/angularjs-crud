@@ -1,0 +1,87 @@
+
+<div layout="column" ng-cloak class="md-inline-form">
+    <md-content layout-padding>
+    <h1>Clientes</h1>
+    <div layout="row">
+        <div flex="50">
+
+            
+            <md-card layout-padding>
+                <md-toolbar layout="row" class="md-hue-3">
+                    <div class="md-toolbar-tools">
+                    <span>Clientes Cadastrados</span>
+                    </div>
+                </md-toolbar>
+                <md-list>
+                    <md-subheader class="md-no-sticky">({{clients.length}}) Clientes Cadastrados</md-subheader>
+                    <md-list-item class="md-3-line" ng-repeat="cli in clients">
+                        <div class="md-list-item-text" layout="column">
+                            <h3>{{cli.name}}</h3>
+                            <h4>{{cli.address}}</h4>
+                            <p>{{cli.cpf}}</p>
+                            
+                        </div>
+                        <i class="material-icons" ng-click="edit(cli,$index)">edit</i>
+                        <i class="material-icons" ng-click="delete($index)">delete</i>
+                    </md-list-item>
+                </md-list>
+            </md-card>
+        </div>
+        <div flex="50">
+            <md-card layout-padding>
+                <form name="clientForm" ng-submit="submitForm(clientForm.$valid,clientForm.$error)" novalidate>
+                    <h2>Formulario</h2>
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Name</label>
+                            <input ng-model="client.name" required>
+                        </md-input-container>
+
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>CPF</label>
+                            <input ng-model="client.cpf" required>
+                        </md-input-container>
+                    </div>
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Nascimento</label>
+                            <input ng-model="client.birthdate" required>
+                        </md-input-container>
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Endereço</label>
+                            <input ng-model="client.address" required>
+                        </md-input-container>
+                    </div>
+                    <div layout-gt-sm="row">
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Marca de Veículo</label>
+                            <md-select ng-change="updateModels(client.vehicleBrand)" ng-model="client.vehicleBrand" required>
+                                <md-option><em>Nenhuma</em></md-option>
+                                <md-option ng-repeat="brand in brands" ng-value="brand.codigo" ng-disabled="$index === 1">
+                                    {{brand.nome}}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+
+                        <md-input-container class="md-block" flex-gt-sm>
+                            <label>Modelo do Veículo</label>
+                            <md-select ng-model="client.vehicleModel" required>
+                                <md-option><em>Nenhuma</em></md-option>
+                                <md-option ng-repeat="model in models" ng-value="model.codigo" ng-disabled="$index === 1">
+                                    {{model.nome}}
+                                </md-option>
+                            </md-select>
+                        </md-input-container>
+                    </div>
+                    <section layout="row" layout-sm="column" layout-align="end end" layout-wrap>
+                        <md-button ng-click="reset()" class="md-raised">Cancelar</md-button>
+                        <md-button type="submit" class="md-raised md-primary">Salvar</md-button>
+                    </div>
+                </form>
+            </md-card>
+        </div>
+
+    </div>
+    
+    </md-content>
+</div>
