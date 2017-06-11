@@ -1,5 +1,5 @@
 
-# Angular 4 User Application 
+# Angular JS CRUD
 A simple application with Angular JS
 
 ## Installation
